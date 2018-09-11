@@ -1,0 +1,63 @@
+{% extends "controlpanel.html" %}
+
+{% block body_class %}{{ parent() }} controlpanel-mod-recentposts{% endblock %}
+
+{% block controlpanel_title %}Add New Ban{% endblock %}
+
+{% block title %}{{ block("controlpanel_title") }} - {{ parent() }}{% endblock %}
+
+{% block controlpanel_body %}
+	<form class="form" method="post">
+		<input type="hidden" name="submit" value="1">
+		
+		<table>
+			<tbody>
+				{% if post %}
+					<tr>
+						<td>Post</td>
+						<td><input type="text" value="/{{ post.board }}/{{ post.number }}" readonly></td>
+					</tr>
+				{% endif %}
+				
+				<tr>
+					<td>IP/Host</td>
+					<td><input type="text" {% if ip %}value="{{ ip }}" readonly{% else %}name="host"{% endif %}></td>
+				</tr>
+				
+				<tr>
+					<td>Type</td>
+					<td>
+						<select name="type">
+							<option value="warn">Warning</option>
+							<option value="bantemp" selected>Temporary Ban</option>
+							<option value="banperm">Permanent Ban</option>
+						</select>
+					</td>
+				</tr>
+				
+				<tr>
+					<td>Length (min)</td>
+					<td><input type="number" name="length" min="0" value="60"></td>
+				</tr>
+				
+				<tr>
+					<td>Reason</td>
+					<td><textarea name="reason"></textarea></td>
+				</tr>
+				
+				{% if post %}
+					<tr>
+						<td>Post Actions</td>
+						<td style="padding: 4px 6px;">
+							<div><label><input type="checkbox" name="postpublicban">Add public ban message</label></div>
+							<div><label><input type="checkbox" name="postdelete">Delete post</label></div>
+							<div><label><input type="checkbox" name="postdeletefile">Delete post file</label></div>
+						</td>
+					</tr>
+				{% endif %}
+			</tbody>
+		</table>
+		
+		<input type="submit" value="Create Ban">
+	</form>
+{% endblock %}

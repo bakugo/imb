@@ -1,0 +1,91 @@
+{% spaceless %}{% use "layout_blocks.html" %}{% endspaceless %}
+<!doctype html>{{ func("get_user_template", ["html-before", "\n"])|raw }}
+<html class="imb" lang="en">
+	<head>
+		{% block head %}
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+			
+			<title>{% block title %}{{ config.general.title }}{% endblock %}</title>
+			
+			<meta name="description" content="{% block meta_description %}{% endblock %}">
+			<meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+			<meta name="generator" content="{{ app.name }} {{ app.version }}">
+			
+			<link rel="icon" href="{{ url(func("get_favicon"), true) }}">
+			<link rel="canonical" href="{{ url(func("get_path_full")) }}">
+			<link rel="image_src" href="{{ image ? image : url(func("get_favicon"), true) }}">
+			
+			<meta property="og:title" content="{{ block("title") }}">
+			<meta property="og:type" content="website">
+			<meta property="og:url" content="{{ url(func("get_path_full"))|replace({" ": "%20"}) }}">
+			<meta property="og:image" content="{{ image ? image : url(func("get_favicon"), true) }}">
+			<meta property="og:locale" content="en_us">
+			<meta property="og:site_name" content="{{ config.general.title }}">
+			
+			{% block styles %}
+				<link rel="stylesheet" href="{{ url("/assets/normalize.css", true) }}">
+				<link rel="stylesheet" href="{{ url("/assets/style.css", true) }}">
+				<link rel="stylesheet" href="{{ url("/assets/themes.css", true) }}">
+				<!-- <link rel="stylesheet" href="{{ url("/assets/flags.css", true) }}"> -->
+				<link rel="stylesheet" href="{{ url("/assets/font-awesome/css/font-awesome.min.css", true) }}">
+				<link rel="stylesheet" href="{{ url("/assets/flag-icon-css/css/flag-icon.min.css", true) }}">
+				
+				{% if func("is_file", [var("basepath") ~ "/web/assets-custom/style.css"]) %}
+					<link rel="stylesheet" href="{{ url("/assets-custom/style.css", true) }}">
+				{% endif %}
+			{% endblock %}
+			
+			{% block scripts %}
+				<script src="{{ url("/assets/jquery.min.js", true) }}"></script>
+				<script src="{{ url("/assets/b4k.min.js", true) }}"></script>
+				<script src="{{ url("/assets/jquery.lazyload.min.js", true) }}"></script>
+				<script src="{{ url("/assets/jquery.timeago.js", true) }}"></script>
+				<script src="{{ url("/assets/twemoji.min.js", true) }}"></script>
+				<script src="{{ url("/assets/script.js", true) }}"></script>
+				
+				{% if func("is_file", [var("basepath") ~ "/web/assets-custom/script.js"]) %}
+					<script src="{{ url("/assets-custom/script.js", true) }}"></script>
+				{% endif %}
+			{% endblock %}
+			
+			{% block script_calls %}
+				<script>
+					imb.appData = {{ app|json_encode()|raw }};
+					imb.scriptSettings = {{ script_settings|json_encode()|raw }};
+					imb.main();
+				</script>
+			{% endblock %}
+			
+			{{ func("get_user_template", ["head"])|raw }}
+		{% endblock %}
+	</head>
+	
+	<body class="{{ block("body_class")|trim|raw }}"{{ block("body_attr") ? (" "~block("body_attr")|trim)|raw }}>
+		{% block body %}
+			{{ func("get_user_template", ["body-start"])|raw }}
+			
+			<div class="links top">
+				<div class="left">
+					<span class="linkset">
+						{% include "links.html" %}
+					</span>
+				</div>
+				
+				<div class="right">
+					{% if user.logged_in %}
+						<span>Logged in as <b>{{ user.username }}</b></span>
+					{% endif %}
+				</div>
+			</div>
+			
+			{% block body_main %}
+				<!-- nothing to see here -->
+			{% endblock %}
+			
+			{% include "footer.html" %}
+			
+			{{ func("get_user_template", ["body-end"])|raw }}
+		{% endblock %}
+	</body>
+</html>{{ func("get_user_template", ["html-after", "\n"])|raw }}

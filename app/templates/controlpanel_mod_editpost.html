@@ -1,0 +1,41 @@
+{% extends "controlpanel.html" %}
+
+{% block body_class %}{{ parent() }} controlpanel-mod-recentposts{% endblock %}
+
+{% block controlpanel_title %}Edit Post{% endblock %}
+
+{% block title %}{{ block("controlpanel_title") }} - {{ parent() }}{% endblock %}
+
+{% block controlpanel_body %}
+	<form class="form" method="post">
+		<input type="hidden" name="submit" value="1">
+		
+		<table>
+			<tbody>
+				<tr>
+					<td>Post</td>
+					<td><input type="text" value="/{{ post.board }}/{{ post.number }}" readonly></td>
+				</tr>
+				
+				<tr>
+					<td>Name</td>
+					<td><input type="text" name="name" value="{{ post.name }}"></td>
+				</tr>
+				
+				{% if (post.thread == post.number) or board.config.allow_reply_subject %}
+					<tr>
+						<td>Subject</td>
+						<td><input type="text" name="subject" value="{{ post.subject }}"></td>
+					</tr>
+				{% endif %}
+				
+				<tr>
+					<td>Comment</td>
+					<td><textarea name="comment">{{ post.comment }}</textarea></td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<input type="submit" value="Edit Post">
+	</form>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block body_class %}{{ parent() }} error{% endblock %}
+
+{% block title %}{{ error.code }}{% if error.name %} {{ error.name }}{% endif %} - Error - {{ parent() }}{% endblock %}
+
+{% block body %}
+	<div class="name">{{ error.code }}{% if error.name %} {{ error.name }}{% endif %}</div>
+	
+	{% if error.desc %}
+		<div class="desc">{{ error.desc }}</div>
+	{% endif %}
+	
+	<div class="back">
+		<a href="javascript:history.back();">Return</a>&nbsp;&nbsp;&nbsp;<a href="{{ url("/") }}">Index</a>
+	</div>
+{% endblock %}

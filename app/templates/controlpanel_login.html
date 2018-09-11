@@ -1,0 +1,33 @@
+{% extends "controlpanel.html" %}
+
+{% block body_class %}{{ parent() }} controlpanel-login{% endblock %}
+
+{% block title %}Login - {{ parent() }}{% endblock %}
+
+{% block controlpanel_title %}Login{% endblock %}
+
+{% block controlpanel_body %}
+	{% if message %}
+		<div class="login-message">{{ message }}</div>
+	{% endif %}
+	
+	<form class="form" method="post">
+		<input type="hidden" name="submit" value="1">
+		
+		<table>
+			<tbody>
+				<tr>
+					<td>Username</td>
+					<td><input type="text" name="username" tabindex="1" value="{% if username %}{{ username }}{% endif %}"></td>
+				</tr>
+				
+				<tr>
+					<td>Password</td>
+					<td><input type="password" name="password" tabindex="2"></td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<input type="submit" tabindex="3" value="Login">
+	</form>
+{% endblock %}

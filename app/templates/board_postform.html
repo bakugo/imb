@@ -1,0 +1,119 @@
+<form class="form post-form" action="{{ url("/post") }}" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="submit" value="1">
+	<input type="hidden" name="json" value="0">
+	<input type="hidden" name="board" value="{{ board.uri }}">
+	<input type="hidden" name="thread" value="{{ thread ? thread.number : "0"}}">
+	
+	<table>
+		<tbody>
+			<tr>
+				<td>Name</td>
+				<td><input type="text" name="name" tabindex="1" placeholder="{{ board.config.anonymous_name }}" {% if not func("user_has_permission", [user, board, "post_with_name"]) and not func("user_has_permission", [user, board, "post_with_tripcode"]) %}readonly{% endif %}></td>
+			</tr>
+			
+			{% if not thread or board.config.allow_reply_subject %}
+				<tr>
+					<td>Subject</td>
+					<td><input type="text" name="subject" tabindex="3"></td>
+				</tr>
+			{% endif %}
+			
+			<tr>
+				<td>Comment</td>
+				<td><textarea name="comment" tabindex="4"></textarea></td>
+			</tr>
+			
+			{% if not func("user_has_permission", [user, board, "post_without_captcha"]) %}
+				<tr>
+					<td>Captcha</td>
+					<td>
+						{% if func("captcha_is_set_up") %}
+							<script src="https://www.google.com/recaptcha/api.js?render=onload&hl=en" async defer></script>
+							<div class="g-recaptcha" data-sitekey="{{ func("captcha_get_site_key") }}"></div>
+						{% else %}
+							<div>ERROR: Captcha is not set up properly!</div>
+						{% endif %}
+					</td>
+				</tr>
+			{% endif %}
+			
+			{% if func("user_has_permission", [user, board, "post_with_file"]) %}
+				<tr>
+					<td>File</td>
+					<td>
+						<input type="file" name="file" tabindex="5">
+						
+						{% if board.config.allow_spoiler_files %}
+							<label title="Use an alternative spoiler thumbnail to hide spoilers"><input type="checkbox" name="spoiler_file" value="1">Spoiler</label>
+						{% endif %}
+					</td>
+				</tr>
+			{% endif %}
+			
+			{% if
+				(thread and func("user_has_permission", [user, board, "post_with_sage"])) or
+				user and (
+					func("user_can_use_capcode", [user, board, null]) or
+					func("user_has_permission", [user, board, "post_with_html"]) or
+					(not thread and (
+						func("user_has_permission", [user, board, "set_thread_sticky"]) or
+						func("user_has_permission", [user, board, "set_thread_lock"])
+					))
+				)
+			%}
+				<tr>
+					<td>Options</td>
+					
+					<td class="options">
+						{% if func("user_can_use_capcode", [user, board, null]) %}
+							<div>
+								<label title="Staff identification label">Capcode: <select name="capcode">
+									<option value="" label="(none)">
+									{% for capcode_key, capcode in config.users.capcodes %}
+										{% if func("user_can_use_capcode", [user, board, capcode_key]) %}
+											<option value="{{ capcode_key }}" label="{{ capcode.title }}">
+										{% endif %}
+									{% endfor %}
+								</select></label>
+							</div>
+						{% endif %}
+						
+						{% if 
+							(thread and func("user_has_permission", [user, board, "post_with_sage"])) or
+							func("user_has_permission", [user, board, "post_with_html"])
+						%}
+							<div>
+								{% if (thread and func("user_has_permission", [user, board, "post_with_sage"])) %}
+									<label title="Reply without bumping the thread"><input type="checkbox" name="sage" value="1">Sage</label>
+								{% endif %}
+								
+								{% if func("user_has_permission", [user, board, "post_with_html"]) %}
+									<label title="Enable [html] tags - text inside them will not be html escaped (even line breaks)"><input type="checkbox" name="enable_html" value="1">Enable HTML</label>
+								{% endif %}
+							</div>
+						{% endif %}
+						
+						{% if not thread %}
+							{% if
+								func("user_has_permission", [user, board, "set_thread_sticky"]) or
+								func("user_has_permission", [user, board, "set_thread_lock"])
+							%}
+								<div>
+									{% if func("user_has_permission", [user, board, "set_thread_sticky"]) %}
+										<label title="Sticky thread upon creation"><input type="checkbox" name="start_stickied" value="1">Sticky</label>
+									{% endif %}
+									
+									{% if func("user_has_permission", [user, board, "set_thread_lock"]) %}
+										<label title="Lock thread upon creation"><input type="checkbox" name="start_locked" value="1">Lock</label>
+									{% endif %}
+								</div>
+							{% endif %}
+						{% endif %}
+					</td>
+				</tr>
+			{% endif %}
+		</tbody>
+	</table>
+	
+	<input type="submit" tabindex="7" value="{% if not thread %}Create New Thread{% else %}Post Reply{% endif %}">
+</form>

@@ -1,0 +1,17 @@
+{% extends "board.html" %}
+
+{% block body_class %}{{ parent() }} board-thread{% endblock %}
+{% block body_attr %}{{ parent() }} data-thread-number="{{ thread.number }}"{% endblock %}
+
+{% block scripts %}
+	{{ parent() }}
+	
+	<script>
+		imb.pageData.threadStats = {{ page_data.thread_stats|json_encode()|raw }};
+		imb.pageData.threadUpdater = {{ page_data.thread_updater|json_encode()|raw }};
+	</script>
+{% endblock %}
+
+{% block board_contents %}
+	{{ data_html|raw }}
+{% endblock %}

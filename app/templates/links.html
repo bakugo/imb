@@ -1,0 +1,7 @@
+<span class="useful-links">
+	<span>[ <a href="{{ url("/") }}">index</a> / <a href="{{ url("/cp/" ~ (user.logged_in ? "dashboard" : "login")) }}">control panel</a> ]</span>
+</span>
+
+<span class="board-list">
+	<span>[ {% for board in boards if func("user_has_permission", [user, board, "see_board"]) %}{% if not loop.first %} / {% endif %}<a href="{{ url("/" ~ board.uri ~ "/") }}" title="/{{ board.uri }}/ - {{ board.title }}">{{ board.uri }}</a>{% endfor %} ]</span>
+</span>

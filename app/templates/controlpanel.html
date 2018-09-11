@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block body_class %}{{ parent() }} controlpanel{% endblock %}
+
+{% block title %}Control Panel - {{ parent() }}{% endblock %}
+
+{% block body_main %}
+	<div class="header">
+		<div class="title">{% block controlpanel_title %}Control Panel{% endblock %}</div>
+	</div>
+	
+	{% block controlpanel_body %}{% endblock %}
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "controlpanel.html" %}
+
+{% block body_class %}{{ parent() }} controlpanel-mod-recentposts{% endblock %}
+
+{% block title %}Recent Posts - {{ parent() }}{% endblock %}
+
+{% block controlpanel_title %}Recent Posts{% endblock %}
+
+{% block controlpanel_body %}
+	<form class="form" method="get">
+		<table>
+			<tbody>
+				<tr>
+					<td>Count</td>
+					<td><input class="small" type="number" name="count" value="{{ count }}"><input type="submit" value="View"></td>
+				</tr>
+				
+				<tr>
+					<td>Offset</td>
+					<td><input class="small" type="number" name="offset" value="{{ offset }}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+	
+	<div class="post-set">
+		{% if posts_html %}
+			{{ posts_html|raw }}
+		{% else %}
+			<div class="no-posts">No posts to display.</div>
+		{% endif %}
+	</div>
+{% endblock %}

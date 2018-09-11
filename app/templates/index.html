@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block body_class %}{{ parent() }} index{% endblock %}
+
+{% block styles %}
+	{{ parent() }}
+	
+	<style>
+		.wew {
+			margin-top: 300px;
+			margin-bottom: 360px;
+			text-align: center;
+			font-size: 64px;
+			font-family: "lato";
+			font-weight: 100;
+		}
+	</style>
+{% endblock %}
+
+{% block body_main %}
+	<div class="wew">This is an imageboard.</div>
+{% endblock %}

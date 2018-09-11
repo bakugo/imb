@@ -1,0 +1,11 @@
+<div class="footer">
+	<div>
+		<div>{{ app.name }} imageboard software v{{ app.version }}</div>
+		<div>{% set debug_info = func("get_debug_info") %}Processed in {{ debug_info.time }}s using {{ debug_info.memory }}mb of memory</div>
+	</div>
+	
+	<div>
+		<div>All trademarks and copyrights on this page are owned by their respective parties.</div>
+		<div>Images uploaded are the responsibility of the Poster. Comments are owned by the Poster.</div>
+	</div>
+</div>

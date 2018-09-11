@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block body_class %}{{ parent() }} banned{% endblock %}
+{% block body_attr %}{{ parent() }} data-banned="{{ banned ? "1" : "0" }}"{% endblock %}
+
+{% block title %}Banned - {{ parent() }}{% endblock %}
+
+{% block body_main %}
+	<div class="header">
+		<div class="title">Banned</div>
+	</div>
+	
+	<fieldset>
+		<legend>{% if banned %}You are banned!{% else %}You are not banned.{% endif %}</legend>
+		
+		<div class="contents">
+			{% if banned %}
+				<div class="bans">
+					{% for ban in bans %}
+						{% if not loop.first %}
+							<hr>
+						{% endif %}
+						
+						<div class="ban">
+							<div>You have {{ loop.first ? "been" : "also been"}} <strong>{{ ban.type == "warn" ? "warned" : "banned from posting" }}</strong> for the following reason:</div>
+							
+							<div class="reason {{ ban.viewdata.reason ? "filled" : "empty" }}">
+								{% if ban.viewdata.reason %}
+									{{ ban.viewdata.reason|raw }}
+								{% else %}
+									<em>(no reason specified)</em>
+								{% endif %}
+							</div>
+							
+							{% if ban.post and ban.viewdata.post %}
+								<div>
+									<div>The post associated with this {{ ban.type == "warn" ? "warning" : "ban" }} was:</div>
+									{{ ban.viewdata.post.html|raw }}
+								</div>
+							{% endif %}
+							
+							<div>
+								<div>This {{ ban.type == "warn" ? "warning" : "ban" }} was issued on <strong><time datetime="{{ ban.viewdata.time_created.attr }}">{{ ban.viewdata.time_created.text }}</time></strong> to <strong>{{ ban.viewdata.ip }}</strong>.</div>
+								
+								{% if ban.type == "warn" %}
+									<div>Now that you have seen this warning, it is no longer active.</div>
+								{% elseif ban.type == "bantemp" %}
+									{% if ban.active %}
+										<div>It is temporary and will expire on <strong><time datetime="{{ ban.viewdata.time_expires.attr }}">{{ ban.viewdata.time_expires.text }}</time></strong>, which is <strong><time class="timeago" datetime="{{ ban.viewdata.time_expires.attr }}"></time></strong>.</div>
+									{% else %}
+										<div>It was temporary and expired on <strong><time datetime="{{ ban.viewdata.time_expires.attr }}">{{ ban.viewdata.time_expires.text }}</time></strong>.</div>
+										<div>Now that you have seen this message, it is no longer active.</div>
+									{% endif %}
+								{% elseif ban.type == "banperm" %}
+									<div>It is permanent and will not expire.</div>
+								{% endif %}
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+			{% else %}
+				<div>You are not currently banned from posting.</div>
+			{% endif %}
+			
+			<div class="back">
+				<a href="javascript:history.back();">Return</a>
+			</div>
+		</div>
+	</fieldset>
+{% endblock %}

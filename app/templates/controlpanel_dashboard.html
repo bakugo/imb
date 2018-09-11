@@ -1,0 +1,44 @@
+{% extends "controlpanel.html" %}
+
+{% block body_class %}{{ parent() }} controlpanel-dashboard{% endblock %}
+
+{% block title %}Dashboard - {{ parent() }}{% endblock %}
+
+{% block controlpanel_title %}Control Panel Dashboard{% endblock %}
+
+{% block controlpanel_body %}
+	<div>
+		<fieldset>
+			<legend>Account</legend>
+			
+			<ul>
+				<li><a href="{{ url("/cp/user/messages") }}">Messages</a></li>
+				<li><a href="{{ url("/cp/user/my-posts") }}">My Posts</a></li>
+				<li><a href="{{ url("/cp/user/settings") }}">Account Settings</a></li>
+				<li><a href="{{ url("/cp/user/change-pass") }}">Change Password</a></li>
+				<li><a href="{{ url("/cp/login?out") }}">Logout</a></li>
+			</ul>
+		</fieldset>
+		
+		<fieldset>
+			<legend>Administration</legend>
+			
+			<ul>
+				<li><a href="{{ url("/cp/admin/manage-users") }}">Manage Users</a></li>
+				<li><a href="{{ url("/cp/admin/manage-boards") }}">Manage Boards</a></li>
+			</ul>
+		</fieldset>
+		
+		<fieldset>
+			<legend>Moderation</legend>
+			
+			<ul>
+				<li><a href="{{ url("/cp/mod/recent-posts") }}">Recent Posts</a></li>
+				<li><a href="{{ url("/cp/mod/reports") }}">Reports</a></li>
+				<li><a href="{{ url("/cp/mod/ban-list") }}">Ban List</a></li>
+				<li><a href="{{ url("/cp/mod/ban-appeals") }}">Ban Appeals</a></li>
+				<li><a href="{{ url("/cp/mod/add-ban") }}">Add New Ban</a></li>
+			</ul>
+		</fieldset>
+	</div>
+{% endblock %}

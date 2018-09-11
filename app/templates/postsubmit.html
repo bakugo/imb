@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block body_class %}{{ parent() }} postsubmit{% endblock %}
+{% block body_attr %}{{ parent() }} data-success="{{ success ? "1" : "0" }}" data-redirect-time="{{ board.config.post_successful_redirect_time }}" {% if success %}data-post-board="{{ info.post.board }}" data-post-number="{{ info.post.number }}" data-redirect-to="{{ info.post.url }}"{% endif %}{% endblock %}
+
+{% block title %}Submit Post - {{ parent() }}{% endblock %}
+
+{% block body %}
+	<div class="message">{{ message }}</div>
+	
+	{% if not success %}
+		<div class="back"><a href="javascript:history.back();">Return</a></div>
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,43 @@
+body[data-theme="midnight"] {
+	background: #171c4e;
+}
+
+body[data-theme="midnight"] .mk-quote {
+	color: #93cc00;
+}
+
+body[data-theme="midnight"],
+body[data-theme="midnight"] .header {
+	color: #eee;
+}
+
+body[data-theme="midnight"] a,
+body[data-theme="midnight"] .post .content .comment .cite,
+body[data-theme="midnight"] .catalog-thread .comment .cite {
+	color: #33cdff;
+}
+
+body[data-theme="midnight"] a:hover,
+body[data-theme="midnight"] .post .content .comment .cite:hover,
+body[data-theme="midnight"] .catalog-thread .comment .cite:hover {
+	color: #99e6ff;
+}
+
+body[data-theme="midnight"] .post.contained .post-interior {
+	background-color: #373a77;
+	border-color: #2b2d5b;
+}
+
+body[data-theme="midnight"] .post .info .subject,
+body[data-theme="midnight"] .catalog-thread .subject {
+	color: #ff6400;
+}
+
+body[data-theme="midnight"] .post .info .author .user-ids .name,
+body[data-theme="midnight"] .post .info .author .user-ids .tripcode {
+	color: #0c0;
+}
+
+body[data-theme="midnight"].board .post.contained.reply .post-interior::before {
+	color: #3b407f;
+}

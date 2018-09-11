@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block body_class %}{{ parent() }} board{% endblock %}
+{% block body_attr %}{{ parent() }} data-board="{{ board.uri }}"{% endblock %}
+
+{% block title %}/{{ board.uri }}/{% if thread.summary %} - {{ thread.summary }}{% endif %} - {{ board.title }} - {{ parent() }}{% endblock %}
+
+{% block body_main %}
+	<div class="header">
+		<div class="banner" style="width: 300px; height: 100px;">
+			<img src="{{ url(func("get_banner"), true) }}" alt="{{ config.general.title }}" title="{{ config.general.title }}">
+		</div>
+		
+		<div class="title">/{{ board.uri }}/ - {{ board.title }}</div>
+		
+		{% if board.subtitle %}
+			<div class="subtitle">{{ func("render_board_subtitle", [board])|raw }}</div>
+		{% endif %}
+	</div>
+	
+	<hr class="below-header">
+	
+	<div class="posting">
+		{% set posting_board_locked = (board.locked and not func("user_has_permission", [user, board, "post_in_locked_board"])) %}
+		{% set posting_thread_locked = (thread and thread.state.locked and not func("user_has_permission", [user, board, "post_in_locked_thread"])) %}
+		{% set posting_thread_archived = (thread and thread.state.archived and not func("user_has_permission", [user, board, "post_in_archived_thread"])) %}
+		
+		{% if
+			posting_board_locked or
+			posting_thread_locked or
+			posting_thread_archived
+		%}
+			<div class="cannot-post">This {% if posting_board_locked %}board{% else %}thread{% endif %} is {% if not posting_board_locked and posting_thread_archived %}archived{% else %}locked{% endif %}, you cannot {% if posting_board_locked %}post{% else %}reply{% endif %} at this time.</div>
+		{% else %}
+			{% include "board_postform.html" %}
+		{% endif %}
+	</div>
+	
+	<hr>
+	
+	<div class="board-links top">
+		{% block board_links %}
+			<span>[<a href="javascript:window.location.reload(true);">Reload</a>]</span>
+			<span>[<a href="{{ url("/" ~ board.uri ~ "/") }}">Index</a>]</span>
+			<span>[<a href="{{ url("/" ~ board.uri ~ "/catalog") }}">Catalog</a>]</span>
+		{% endblock %}
+		
+		<span>[<a href="javascript:b4k.scrollTo(0, false, true);">Bottom</a>]</span>
+	</div>
+	
+	<hr>
+	
+	<div class="board-content">
+		{% block board_contents %}{% endblock %}
+	</div>
+	
+	<hr>
+	
+	<div class="board-links bottom">
+		{{ block("board_links") }}
+		
+		<span>[<a href="javascript:b4k.scrollTo(0, false, false);">Top</a>]</span>
+	</div>
+	
+	<hr>
+	
+	{% if board.config.extra_html_hidden %}
+		<div hidden>
+			{{ board.config.extra_html_hidden|raw }}
+		</div>
+	{% endif %}
+{% endblock %}

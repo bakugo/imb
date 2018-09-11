@@ -1,0 +1,11 @@
+{% extends "board.html" %}
+
+{% block body_class %}{{ parent() }} board-index board-index-{{ index_mode }}{% endblock %}
+
+{% block board_contents %}
+	{% if data_html %}
+		{{ data_html|raw }}
+	{% else %}
+		<div class="no-posts">No threads to display.</div>
+	{% endif %}
+{% endblock %}

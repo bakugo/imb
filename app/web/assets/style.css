@@ -1,0 +1,827 @@
+@import url("//fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic");
+
+body {
+	font-family: roboto, arial;
+	font-size: 13px;
+	color: #000;
+	background: #eef2ff url("background.png") top center repeat-x;
+	margin: 5px;
+}
+
+body a {
+	color: #34345c;
+	text-decoration: none;
+}
+
+body a:hover {
+	color: #dd0000;
+}
+
+body a > img { 
+	vertical-align: bottom;
+}
+
+body img.lazyload:not(.lazyloaded) {
+	display: none;
+}
+
+body table {
+	font-size: inherit;
+}
+
+body .mk-quote {
+	color: #789922;
+}
+
+body .mk-bold {
+	font-weight: bold;
+}
+
+body .mk-italic {
+	font-style: italic;
+}
+
+body .mk-strikethrough {
+		text-decoration: line-through;
+}
+
+body .mk-spoiler,
+body .mk-spoiler:not(:hover) .quote {
+	color: #000;
+	background: #000;
+	text-decoration: none;
+}
+
+body .mk-spoiler:hover {
+	color: #fff;
+}
+
+body .mk-ascii {
+	font-family: monospace;
+	white-space: pre;
+}
+
+body .emoji {
+	height: 1em;
+	width: 1em;
+	margin: 0 .05em 0 .1em;
+	vertical-align: -0.1em;
+}
+
+body > .footer {
+	margin-top: 40px;
+	margin-bottom: 20px;
+	text-align: center;
+	font-size: 11px;
+}
+
+body > .footer > div:not(:first-of-type) {
+	margin-top: 6px;
+}
+
+body > .links {
+	font-size: 12px;
+	margin: 0 4px;
+}
+
+body > .links > .left,
+body > .links > .right {
+	display: inline-block;
+}
+
+body > .links > .left {
+	padding-right: 10px;
+}
+
+body > .links > .right {
+	float: right;
+	padding-left: 10px;
+}
+
+body > .links .linkset {
+	color: #89a;
+}
+
+body > .links .linkset .board-list a {
+	white-space: pre;
+}
+
+body > .header {
+	margin-top: 14px;
+	text-align: center;
+	color: #af0a0f;
+}
+
+body > .header > .banner {
+	display: inline-block;
+	margin: auto;
+	margin-bottom: 4px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body > .header > .title {
+	margin-top: 4px;
+	font-size: 32px;
+	font-weight: bold;
+	letter-spacing: -1px;
+}
+
+body > .header > .subtitle {
+	font-size: 11px;
+}
+
+body hr {
+	display: block;
+	width: calc(100% - 10px);
+	height: 0;
+	border: none;
+	border-top: 1px solid #b7c5d9;
+	border-color: rgba(100,100,100,0.3);
+	margin: 20px auto;
+	clear: both;
+}
+
+body.board .board-content hr {
+	margin: 14px auto;
+}
+
+body.board hr.below-header {
+	width: 90%;
+}
+
+body.board > .posting > .cannot-post {
+	width: auto;
+	max-width: calc(40% + 200px);
+	margin: 40px auto;
+	text-align: center;
+	color: red;
+	font-size: 28px;
+}
+
+body .form {
+	
+}
+
+body .form table {
+	border-spacing: 1px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+body .form table,
+body .form table tbody {
+	position: relative;
+	width: auto;
+	max-width: 90%;
+}
+
+body .form table tr {
+	min-height: 24px;
+}
+
+body .form table tr td {
+	margin: 0px;
+	padding: 0px;
+}
+
+body .form table tr td:first-child {
+	height: 22px;
+	background-color: #98e;
+	color: #000;
+	font-weight: bold;
+	border: 1px solid #000;
+	padding: 0 8px 0 6px;
+}
+
+body .form label {
+	display: inline-block;
+}
+
+body .form input,
+body .form textarea,
+body .form select {
+	max-width: calc(90vw - 70px);
+}
+
+body .form input[type=text],
+body .form input[type=number],
+body .form input[type=password],
+body .form textarea {
+	margin: 0px;
+	padding: 2px 4px;
+	line-height: 18px;
+	border: 1px solid #aaa;
+	outline: none;
+}
+
+body .form input[type=text]:focus,
+body .form input[type=number]:focus,
+body .form input[type=password]:focus,
+body .form input:not([type]):focus,
+body .form textarea:focus {
+	border: 1px solid #9988ee !important;
+}
+
+body .form input[type=text],
+body .form input[type=number],
+body .form input[type=password],
+body .form input:not([type]),
+body .form textarea {
+	width: 200px;
+}
+
+body .form select {
+	width: 210px;
+}
+
+body .form input.small,
+body .form textarea.small,
+body .form select.small {
+	width: 100px;
+}
+
+body .form input[type=text][readonly],
+body .form input[type=password][readonly],
+body .form input:not([type])[readonly],
+body .form textarea[readonly] {
+	background-color: #eee;
+}
+
+body .form textarea {
+	font-family: inherit;
+	margin-bottom: -4px !important;
+	height: 60px;
+}
+
+body .form input[type=file] {
+	width: calc(100% - 86px);
+}
+
+body .form input[type=checkbox],
+body .form input[type=radio] {
+	position: relative;
+	top: 2px;
+}
+
+body .form label input[type=checkbox] {
+	margin-right: 2px;
+}
+
+body .form > input[type=submit] {
+	display: block;
+	margin: 14px auto 10px auto;
+	padding: 2px 10px;
+}
+
+body .form table input[type=submit] {
+	margin-left: 4px;
+}
+
+body .no-posts {
+	margin: 60px 10%;
+	text-align: center;
+	color: red;
+	font-size: 24px;
+}
+
+.post {
+	display: block;
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+
+.post .post-interior {
+	position: relative;
+	min-width: 300px;
+	max-width: 90%;
+}
+
+.post.contained .post-interior {
+	display: inline-block;
+	background-color: #d6daf0;
+	border: 1px solid #b7c5d9;
+	border-left: none;
+	border-top: none;
+	margin-left: 20px;
+	margin-right: 40px;
+	padding: 2px;
+}
+
+.post.contained .post-interior::after {
+	content: "";
+	display: table;
+}
+
+.post.contained.target .post-interior {
+	background: #d6bad0;
+	border: 1px solid #ba9dbf;
+	border-left: none;
+	border-top: none;
+	padding: 2px;
+}
+
+body.board .post.contained.reply .post-interior::before {
+	content: ">>";
+	color: #b7c5d9;
+	display: inline-block;
+	position: absolute;
+	left: -17px;
+	top: -2px;
+}
+
+.post .scroll-target {
+	position: absolute;
+	top: -10px;
+	left: -10px;
+	visibility: hidden;
+	width: 1px;
+	height: 1px;
+}
+
+.post .info {
+	width: 100%;
+}
+
+.post.contained .info {
+	padding-left: 10px;
+	padding-right: 6px;
+	padding-top: 2px;
+}
+
+.post.op:not(.contained) .info {
+	margin-top: 4px;
+	margin-left: 20px;
+}
+
+.post .info .board-tag,
+.post .info .op-tag {
+	font-weight: bold;
+}
+
+.post .info .subject,
+.catalog-thread .subject {
+	color: #14107f;
+	font-weight: bold;
+}
+
+.post .info .author .user-ids .name,
+.post .info .author .user-ids .tripcode {
+	color: #117743;
+}
+
+.post .info .author .user-ids .name,
+.post .info .author .user-ids .capcode {
+	font-weight: bold;
+}
+
+.post .info .author > .user-ids > .capcode {
+	color: inherit;
+}
+
+.catalog-thread[data-capcode] .thumb {
+	box-shadow: 0px 0px 8px 2px red;
+}
+
+.post[data-capcode="admin"] .info .author .user-ids * {
+	color: #ff0000;
+}
+
+.post[data-capcode="mod"] .info .author .user-ids * {
+	color: #800080;
+}
+
+.post .info .author .internal-ids {
+	font-size: 11px;
+}
+
+.post .info .author .flag .flag-icon {
+	width: 16px;
+	height: 12px;
+	position: relative;
+	top: 1px;
+}
+
+.post .info .number a:not(:hover) {
+	color: inherit !important;
+}
+
+.post .info .icons,
+.catalog-thread .icons {
+	position: relative;
+	margin-left: 2px;
+	line-height: 0;
+	/*color: #1960b2;*/
+}
+
+.catalog-thread .icons {
+	top: 1px;
+	font-size: 11px;
+}
+
+.post.op:not(.contained) .info .icons {
+	top: 1px;
+	margin-left: 4px;
+	margin-right: 2px;
+	font-size: 15px;
+}
+
+.post .info .icons i:not(:first-of-type) {
+	margin-left: 6px;
+}
+
+.catalog-thread .info .icons i:not(:first-of-type) {
+	margin-left: 3px;
+}
+
+.icons i.icon-stickied {
+	transform: rotate(30deg);
+}
+
+.icons i.icon-autosage,
+.icons i.icon-archived {
+	font-size: 0.9em;
+}
+
+.post .info .view-link {
+	margin-left: 4px;
+}
+
+.post .mod-controls {
+	font-size: 11px;
+	margin: 2px 6px;
+}
+
+.post.contained .mod-controls {
+	float: right;
+}
+
+.post:not(.contained) .mod-controls {
+	margin-left: 20px;
+	margin-bottom: 8px;
+}
+
+.post:not(.contained) .mod-controls:before {
+	display: inline-block;
+	content: "";
+	width: 8px;
+}
+
+.catalog-thread .mod-controls {
+	font-size: 10px;
+	margin: 2px 4px;
+}
+
+.post .mod-controls a:not(:first-of-type) {
+	margin-left: 2px;
+}
+
+.catalog-thread .mod-controls a:not(:first-of-type) {
+	margin-left: 1px;
+}
+
+.post.op:not(.contained) .file .file-info {
+	margin-left: 8px;
+	margin-bottom: 2px;
+}
+
+.post.contained .file .file-info {
+	padding-left: 12px;
+	padding-right: 6px;
+}
+
+.post .file .file-info .file-link {
+	text-decoration: underline;
+}
+
+.post .file .thumb {
+	float: left;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 3px;
+	margin-bottom: 5px;
+}
+
+.post .file.absent .thumb,
+.post .file.deleted .thumb,
+.post .file.spoiler .thumb,
+.catalog-thread .file.absent .thumb,
+.catalog-thread .file.deleted .thumb,
+.catalog-thread .file.spoiler .thumb {
+	background-color: #fff;
+	background-repeat: no-repeat;
+	background-position: center center;
+	width: 1000px;
+	height: 1000px;
+}
+
+.catalog-thread .file.absent .thumb,
+.catalog-thread .file.deleted .thumb {
+	max-height: 60px;
+}
+
+.post .file.deleted .thumb,
+.catalog-thread .file.deleted .thumb {
+	background-image: url("file-deleted.png");
+}
+
+.post .file.absent .thumb,
+.catalog-thread .file.absent .thumb {
+	background-image: url("file-absent.png");
+}
+
+.post .file.spoiler .thumb,
+.catalog-thread .file.spoiler .thumb {
+	background-image: url("file-spoiler.png");
+	background-size: 100% 100%;
+}
+
+.post  .content {
+	word-wrap: break-word;
+	margin: 1em 40px;
+}
+
+.post.op:not(.contained) .content {
+	margin-bottom: 1.3em;
+}
+
+.post .content .public-ban {
+	margin-top: 16px;
+	font-weight: bold;
+	color: red;
+}
+
+.post .content .comment,
+.post .content .comment *,
+.catalog-thread .comment,
+.catalog-thread .comment * {
+	line-height: 1.4em;
+}
+
+.post .content .comment p,
+.catalog-thread .comment p {
+	margin-top: 0.8em;
+	margin-bottom: 0.8em;
+}
+
+.post .content .comment p:first-child,
+.catalog-thread .comment p:first-child {
+	margin-top: 0;
+}
+
+.post .content .comment p:last-child,
+.catalog-thread .comment p:last-child {
+	margin-bottom: 0;
+}
+
+.post .content .comment p p,
+.catalog-thread .comment p p {
+	margin: 0;
+}
+
+.post .content .comment .quote-link,
+.catalog-thread .comment .quote-link {
+	color: #d00;
+}
+
+.post .content .comment .user-link,
+.catalog-thread .comment .user-link {
+	text-decoration: underline;
+}
+
+body.board .posting .form.post-form input[type=text],
+body.board .posting .form.post-form input[type=password],
+body.board .posting .form.post-form input:not([type]),
+body.board .posting .form.post-form textarea {
+	width: 300px;
+}
+
+body.board .posting .form.post-form .g-recaptcha {
+	min-height: 60px;
+	margin-bottom: -2px;
+}
+
+body.board .posting .form.post-form table tr td.options {
+	padding: 4px 6px;
+}
+
+body.board .posting .form.post-form table tr td.options div:not(:first-of-type) {
+	margin-top: 4px;
+}
+
+body.board .posting .form.post-form table tr td.options select {
+	width: auto;
+	min-width: 100px;
+}
+
+body.board .posting .form.post-form table tr td.options input[type=checkbox] {
+	margin-left: 0;
+}
+
+body.board .posting .form.post-form table tr td.options div label {
+	padding-right: 4px;
+}
+
+body.board .board-links {
+	margin: -14px 16px;
+}
+
+body.board .board-content {
+	margin: 20px 0;
+	clear: both;
+}
+
+body.board .board-content:empty:after {
+	content: "No threads to display.";
+	display: block;
+	margin: 50px 20px;
+	text-align: center;
+	color: #f00;
+	font-size: 24px;
+}
+
+body.board .board-content .thread::before ,
+body.board .board-content .thread::after {
+	content: "";
+	display: table;
+	width: 100%;
+}
+
+body.board.board-index-paged .board-content .thread .omitted-replies {
+	display: table;
+	margin-left: 18px;
+	margin-bottom: 4px;
+	padding-left: 6px;
+	color: #777;
+	font-size: 12px;
+}
+
+body.board.board-index-catalog .board-content {
+	text-align: center;
+}
+
+body.board.board-index-catalog .board-content .catalog-thread {
+	width: 165px;
+	max-height: 320px;
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0 2px 10px 2px;
+	vertical-align: top;
+	word-wrap: break-word;
+	position: relative;
+}
+
+body.board.board-index-catalog .board-content .catalog-thread .file .thumb {
+	display: block;
+	margin: 0 auto;
+}
+
+body.board.board-index-catalog .board-content .catalog-thread .info {
+	font-size: 10px;
+	font-weight: 700;
+	margin-top: 4px;
+}
+
+body.board.board-index-catalog .board-content .catalog-thread .info .stats {
+	font-weight: 700;
+}
+
+body.board.board-index-catalog .board-content .catalog-thread .subject,
+body.board.board-index-catalog .board-content .catalog-thread .comment {
+	align-self: stretch;
+	overflow: hidden;
+}
+
+body.board.board-index-catalog .board-content .catalog-thread .subject {
+	flex-shrink: 0;
+}
+
+body.board.board-index-catalog .board-content .catalog-thread .comment {
+	margin-top: 2px;
+	font-size: 12px;
+	flex-shrink: 1;
+}
+
+body.error {
+	text-align: center;
+}
+
+body.error .name {
+	margin-top: 60px;
+	font-size: 32px;
+}
+
+body.error .desc {
+	font-size: 18px;
+}
+
+body.error .back {
+	margin-top: 10px;
+	font-size: 14px;
+}
+
+body.error .back a {
+	text-decoration: underline;
+}
+
+body.postsubmit {
+	text-align: center;
+}
+
+body.postsubmit .message,
+body.postsubmit .back {
+	margin: auto;
+}
+
+body.postsubmit .message {
+	margin-top: 200px;
+	max-width: 80%;
+	font-size: 36px;
+}
+
+body.postsubmit .back {
+	margin-top: 4px;
+	font-size: 18px;
+}
+
+body.postsubmit .back a {
+	text-decoration: underline;
+}
+
+body.banned fieldset {
+	width: 700px;
+	margin: auto;
+	margin-top: 10px;
+	padding: 16px 20px 24px 20px;
+}
+
+body.banned fieldset legend {
+	font-size: 18px;
+	padding: 0px 10px;
+	margin-left: 10px;
+}
+
+body.banned fieldset .contents {
+	position: relative;
+	margin: 0 6px;
+}
+
+body.banned fieldset .contents .bans .ban > div:not(:first-child) {
+	margin-top: 12px;
+}
+
+body.banned fieldset .contents .bans .ban .reason {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+body.banned fieldset .contents .bans .ban .reason.filled {
+	padding: 8px 14px;
+	border-radius: 4px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgba(0, 0, 0, 0.1);
+}
+
+body.banned fieldset .contents .bans .ban .reason a {
+	text-decoration: underline;
+}
+
+body.banned fieldset .contents .bans .ban .post {
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+body.banned fieldset .contents .back {
+	position: absolute; 
+	bottom: -16px;
+	right: -14px;
+	font-size: 12px;
+}
+
+body.controlpanel .header {
+	margin-bottom: 30px;
+}
+
+body.controlpanel.controlpanel-dashboard fieldset {
+	display: block;
+	margin: auto;
+	width: 1000px;
+	max-width: 95%;
+}
+
+body.controlpanel.controlpanel-dashboard fieldset:not(:first-child) {
+	margin-top: 10px;
+}
+
+body.controlpanel.controlpanel-login .login-message {
+	margin-top: -8px;
+	margin-bottom: 4px;
+	text-align: center;
+	color: red;
+	font-size: 12px;
+}
+
+body.controlpanel.controlpanel-mod-recentposts .form {
+	margin-bottom: 20px;
+}
