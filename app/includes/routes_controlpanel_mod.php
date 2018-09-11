@@ -373,7 +373,7 @@ function route_controlpanel_mod_addban() {
 	
 	$post = null;
 	
-	$ip = $httpvars["get"]["ip"];
+	$ip = $httpvars["get_n_post"]["ip"];
 	$postinfo = $httpvars["get"]["post"];
 	
 	$ip = (strlen($ip) ? $ip : null);

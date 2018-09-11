@@ -60,6 +60,8 @@ function route_test() {
 	global $httpvars;
 	global $db;
 	
+	return false;
+	
 	b4k::set_header("content-type", "text/plain");
 	
 	switch($httpvars["get"]["act"]) {
